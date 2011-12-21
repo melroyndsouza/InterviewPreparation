@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node {
+	int data;
+	struct node *next;
+} Node;
+
+void push(Node **head, int data) {
+	Node *newNode;
+
+	newNode = (Node *) mallloc(sizeof(Node));
+	newNode->next = *head->next;
+	newNode->data = data;
+	*head = newNode;
+}
+
+int length(Node *head){
+	int length =0;
+	while(head != NULL){
+		length++;
+		head = head->next;
+	}
+	return length;
+}
+
+
