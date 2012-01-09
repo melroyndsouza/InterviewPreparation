@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+
+int highBit(int num){
+	int place =0;
+	while(num!=0){
+		place++;
+		num = num>>1;
+	}
+	return place;
+}
+
+
+
+int main(){
+	int x = 2;
+
+	printf("%d",(x<<x<<x)|(x<<(x/x)|(x/x)));
+
+
+	return 0;
+}

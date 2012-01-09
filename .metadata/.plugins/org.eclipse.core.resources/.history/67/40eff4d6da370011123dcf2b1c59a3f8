@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+
+#define GET(A,i,j) ((i<0 || j<0) ? -1:A[i][j])
+
+
+void cpy(char * a,char *b,int len){
+	b[len--] = '\0';
+	while(len>=0){
+		b[len--] = *a;
+		a = a-1;
+	}
+
+}
+
+void largStr(char *a, char *b) {
+	int i,j;
+	int lenA = strlen(a);
+	int lenB = strlen(b);
+	char *op = (char*) malloc((lenA > lenB ? lenA : lenB));
+
+	int longest = 0;
+	char *opLoc;
+	int **mat = (int**) malloc((lenA - 1) * sizeof(int *));
+	for (i = 0; i < lenA; i++) {
+		mat[i] = (int *) malloc((lenB - 1) * sizeof(int));
+		memset(mat[i], 0, lenB);
+	}
+
+	for (i = 0; i < lenA; i++)
+		for (j = 0; j < lenB; j++) {
+			if (a[i] == b[j]) {
+				mat[i][j] = GET(mat,i-1,j-1) + 1;
+				if (mat[i][j] > longest) {
+					longest = mat[i][j];
+					opLoc = &a[i];
+				}
+			}
+		}
+	cpy(opLoc,op,longest);
+	printf("Length : %d \t Str : %s ",longest,op);
+}
+
+int main(){
+	largStr("abcdf","lknsalndlasabcde");
+	return 0;
+}

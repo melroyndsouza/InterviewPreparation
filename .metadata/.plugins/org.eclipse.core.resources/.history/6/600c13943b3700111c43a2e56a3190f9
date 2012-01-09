@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a, int*b) {
+	*a ^= *b ^= *a ^= b;
+}
+
+int main() {
+	int i = 0;
+	int arr[6] = { 5, 3, 6, 72, 1, 5 };
+	swap(&arr[1], &arr[2])
+	while (i < 6)
+		printf("%d", arr[i++]);
+}
+

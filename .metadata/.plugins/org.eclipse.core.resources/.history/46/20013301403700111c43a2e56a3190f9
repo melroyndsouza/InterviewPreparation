@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a, int* b) {
+//	*a = *a ^ *b;
+//	*b = *a ^ *b;
+//	*a = *a ^ *b;
+	int temp = *a;
+	*a = *b;
+	*b =temp;
+
+}
+
+
+void insertionSort(int arr[],int s, int e){
+	int j=s+1;
+
+	while(j<=e){
+		int i=j;
+		int val = arr[j];
+
+		while(i>s && val<arr[i-1]){					//<=====================
+			arr[i] = arr[i-1];
+			i--;
+		}
+		arr[i] = val;
+		j++;
+		int k= 0;
+		while(k<6)
+			printf("%d ",arr[k++]);
+		printf("\n");
+	}
+}
+
+void selectionSort(int arr[],int s,int e){
+	int i=s;
+
+	while(i<e){
+		int j=i;
+		int min =j;
+
+		while(j<=e){
+			min = arr[min]<arr[j]?min:j;
+			j++;
+		}
+		swap(&arr[i],&arr[min]);
+		i++;
+	}
+}
+
+int partition(int a[],int s,int e){
+	int i=s-1;
+	int j=s;
+
+	while(j<e){
+		if(a[j]<a[e]){
+			i++;
+			swap(&a[i],&a[j]);
+		}
+		j++;
+	}
+	i++;
+	swap(&a[i],&a[j]);
+}
+
+
+
+void quickSort(int a[],int s,int e){
+	if(s<e){
+		int m = partition(a,s,e);
+		quickSort(a,m+1,e);
+		quickSort(a,s,m-1);
+	}
+
+}
+
+
+
+int main() {
+	int i = 0;
+	int arr[6] = { 5, 3, 6, 72, 1, 5 };
+	quickSort(arr,0,5);
+	while (i < 6)
+		printf("%d ", arr[i++]);
+	return 0;
+}
+

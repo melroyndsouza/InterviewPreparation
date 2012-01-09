@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+int main() {
+	int arr[6] = { 5, 3, 6, 72, 1, 5 };
+	int i = 0;
+	quicksort(arr, 0, 5);
+	while (i < 6)
+		printf("%d ", 3 / 2);
+}

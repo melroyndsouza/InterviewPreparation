@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int partition(int ra[], int start, int end) {
+	int i = start - 1;
+	int j = start;
+	int temp;
+	while (j < end) {
+		if (ra[j] <= ra[end]) {
+			i++;
+			temp = ra[j];
+			ra[j] = ra[i];
+			ra[i] = temp;
+			/*ra[j] = ra[j]^ra[i];
+			ra[i] = ra[j]^ra[i];
+			ra[j] = ra[j]^ra[i];*/
+		}
+		j++;
+	}
+	i++;
+	temp = ra[end];
+	ra[end] = ra[i];
+	ra[i] = temp;
+	return i;
+}
+
+void quicksort(int ra[], int start, int end) {
+	if (start < end) {
+		int mid = partition(ra, start, end);
+		quicksort(ra, start, mid - 1);
+		quicksort(ra, mid + 1, end);
+	}
+}
+
+int main() {
+	int arr[6] = { 5, 3, 6, 72, 1, 5 };
+	int i = 0;
+	quicksort(arr, 0, 5);
+	while (i < 6)
+		printf("%d ", arr[i++]);
+}

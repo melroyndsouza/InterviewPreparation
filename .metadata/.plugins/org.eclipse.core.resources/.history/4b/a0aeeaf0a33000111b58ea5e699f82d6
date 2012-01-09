@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct Node {
+	struct Node *left;
+	struct Node *right;
+	int data;
+}Node;
+
+
+void insert(int data, Node **nodePtr ){
+	Node *dataNode = (Node *)malloc(sizeof(Node));
+	if(*nodePtr == NULL){
+		dataNode->data = data;
+		dataNode->left = NULL;
+		dataNode->right = NULL;
+	}
+
+	if(*nodePtr->data < data)
+		return insert(data,&(*nodePtr->right));
+	else
+		return insert(data,&(*nodePtr->left));
+
+}
+
+
+void searchBT
+

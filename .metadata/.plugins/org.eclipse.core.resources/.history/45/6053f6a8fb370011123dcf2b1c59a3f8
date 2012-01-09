@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+	struct Node *left;
+	struct Node *right;
+	int data;
+} Node;
+
+int insert(Node **head, int data) {
+	if (*head) {
+		if (data <= (*head)->data)
+			return insert(&(*head)->left, data);
+		else
+			return insert(&(*head)->right, data);
+	}
+	*head = (Node *) malloc(sizeof(Node));
+	if (!*head)
+		return -1;
+
+	(*head)->data = data;
+	(*head)->left = NULL;
+	(*head)->right = NULL;
+	return 0;
+
+}
+
+void print(Node *head) {
+	if (head) {
+		print(head->left);
+		printf("%d ", head->data);
+		print(head->right);
+	}
+
+}
+
+int main() {
+	int i = 0;
+	Node *head = NULL;
+	for (i = 0; i < 6; i++) {
+		insert(&head,i);
+	}
+	print(head);
+}

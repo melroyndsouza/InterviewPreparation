@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define HASHINFO(x) hash[x] = 1;
+#define GETHASH(x) hash[x]
+int hash[256];
+
+void replace(char * str, char * delim) {
+	memset(hash, 0, sizeof(hash));
+	while (*delim) {
+		HASHINFO(*delim);
+		delim++;
+	}
+	while (*str) {
+		if (GETHASH(*str)) {
+			*str = '|';
+		}
+		str++;
+	}
+}
+
+void driver() {
+	char string[50] = { 0 };
+	char delim[50] = { 0 };
+	printf("Enter the string\n");
+	gets(string);
+	printf("Enter the delims\n");
+	gets(delim);
+	replace(string, delim);
+	printf("\n Result = \n%s", string);
+}
+
+char * conv(int num, char *str) {
+	char *curr;
+	if (num) {
+		curr = conv((num - 1) / 26, str);
+		*curr = 'a' + (num - 1) % 26;
+		return curr + 1;
+	}
+	return str;
+}
+
+void f(int n) {
+	if (n == 0)
+		return;
+	f((n - 1) / 26);
+	printf("%c", ((n - 1) % 26 + 'A'));
+}
+
+
+
+
+
+void main() {
+	int num = 26;
+	int div = 1;
+	char str[11];
+	/*	char *curr = str;
+
+	 while(num/div)
+	 div*=10;
+
+	 while(div){
+	 div/=10;
+	 *curr = num/div+'0';
+	 num=num%div;
+	 curr++;
+	 }
+	 *curr = '\0';
+	 printf("%s",str);*/
+
+	*conv(num, str) = '\0';
+	printf("%s", str);
+}

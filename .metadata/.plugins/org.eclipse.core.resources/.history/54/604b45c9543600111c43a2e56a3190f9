@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define HASHINFO(x) hash[x] = 1;
+#define GETHASH(x) hash[x]
+int hash[256];
+
+
+void replace(char * str, char * delim) {
+	memset(hash, 0, sizeof(hash));
+	while (*delim) {
+		HASHINFO(*delim);
+		delim++;
+	}
+	while (*str) {
+		if (GETHASH(*str)) {
+			*str = '|';
+		}
+		str++;
+	}
+}
+
+
+
+void driver() {
+	char string[50] = { 0 };
+	char delim[50] = { 0 };
+	printf("Enter the string\n");
+	gets(string);
+	printf("Enter the delims\n");
+	gets(delim);
+	replace(string, delim);
+	printf("\n Result = \n%s", string);
+}
+
+
+void main() {
+	driver();
+}

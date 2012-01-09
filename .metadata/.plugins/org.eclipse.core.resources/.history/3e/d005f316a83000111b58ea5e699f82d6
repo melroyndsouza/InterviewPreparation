@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+	struct Node *left;
+	struct Node *right;
+	int data;
+} Node;
+
+void insert(int data, Node **nodePtr) {
+	Node *dataNode = (Node *) malloc(sizeof(Node));
+	if (*nodePtr == NULL) {
+		dataNode->data = data;
+		dataNode->left = NULL;
+		dataNode->right = NULL;
+	}
+
+	if (*nodePtr->data < data)
+		return insert(data, &(*nodePtr->right));
+	else
+		return insert(data, &(*nodePtr->left));
+
+}
+
+void insertNRC(int data, Node **head) {
+	Node *currNode, *prevNode;
+	Node *dataNode = (Node *) malloc(sizeof(Node));
+	dataNode->data = data;
+	dataNode->left = NULL;
+	dataNode->right = NULL;
+
+	if (*head == NULL)
+		*head = dataNode;
+	else {
+		prevNode = NULL;
+		currNode = *head;
+		while (currNode != NULL) {
+			prevNode = currNode;
+			if (data < currNode->data)
+				currNode = currNode->left;
+			else
+				currNode = currNode->right;
+		}
+
+		if(data<prevNode->data)
+			dataNode = prevNode->left;
+		else
+			dataNode = prevNode->right;
+	}
+
+}
+
+Node searchBT(int data, Node **nodePtr) {
+	if (*nodePtr->data == data)
+		return **nodePtr;
+
+	if (*nodePtr->data < data)
+		return searchBT(data, &(*nodePtr->left));
+	else
+		return searchBT(data, &(*nodePtr->right));
+}
+
+
+void DFSinorder(Node *ptr){
+	if(ptr!=NULL){
+		DFSinorder(ptr->left);
+		printf("\t%d",ptr->data);
+		DFSinorder(ptr->right);
+	}
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void quicksort(int ra[],int start,int end){
+	int mid = partition(ra,start,end);
+	quicksort(ra,start,mid-1);
+	quicksort(ra,mid+1,end);
+}
+
+int partition(int ra[],int start,int end){
+	int i = start-1;
+	int j=start;
+
+	while(j<end){
+		if(ra[j]<=ra[end]){
+			i++;
+			ra[j]^=ra[i]^=ra[j]^=ra[i];
+		}
+		j++;
+	}
+	i++;
+	ra[end]^=ra[i]^=ra[end]^=ra[i];
+
+}
+
+
+

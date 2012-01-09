@@ -1,0 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define get(A,i,j) ((i<0 || j<0) ? -1:A[i][j])
+

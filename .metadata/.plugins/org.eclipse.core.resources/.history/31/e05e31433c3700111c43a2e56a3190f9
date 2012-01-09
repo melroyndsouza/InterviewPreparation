@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a, int* b) {
+	*a = *a ^ *b;
+	*b = *a ^ *b;
+	*a = *a ^ *b;
+}
+
+
+void insertionSort(int arr[],int s, int e){
+	int j=s+1;
+
+	while(j<=e){
+		int i=j;
+		int val = a[j];
+
+		while(i>s && arr[i]<arr[i-1]){
+			arr[i] = arr[i-1];
+			i--;
+		}
+		arr[i] = val;
+		j++;
+	}
+}
+
+
+int main() {
+	int i = 0;
+	int arr[6] = { 5, 3, 6, 72, 1, 5 };
+	swap(&arr[1], &arr[2]);
+	while (i < 6)
+		printf("%d", arr[i++]);
+}
+

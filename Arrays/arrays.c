@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int matoi(int *op, const char *ip) {
+
+	int sign = 1;
+	//char *curr = ip;
+	*op = 0;
+	while (*ip != '\0') {
+		if (*ip == '-')
+			sign = -1;
+		else if (*ip < '0' || *ip > '9')
+			return -1;
+		else
+			*op = *op * 10 + (*ip - '0');
+		ip += 1;
+	}
+	*op *= sign;
+	return 0;
+
+}
+
+int main() {
+	int op[3][3] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+	int row = 0;
+	int i = 0;
+	int direc;
+
+	while (row < 3) {
+		direc = row % 2 ? -1 : 1;
+		while (i >= 0 && i < 3) {
+			printf("%d", op[row][i]);
+			i += direc;
+		}
+		i -= direc;
+		row++;
+	}
+
+	return 0;
+}

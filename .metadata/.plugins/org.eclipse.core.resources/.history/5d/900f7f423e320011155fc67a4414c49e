@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+
+
+int highIndex(int num){
+	int place=0;
+
+	while(num!=0){
+		num = num >> 1;
+		place++;
+	}
+
+	return place;
+}
+
+
+int main(){
+	printf("%d",highIndex(-4));
+	return 0;
+}

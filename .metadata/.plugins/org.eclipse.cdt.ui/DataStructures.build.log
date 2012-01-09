@@ -1,0 +1,18 @@
+
+**** Build of configuration Debug for project DataStructures ****
+
+make all 
+Building file: ../BST.c
+Invoking: Cross GCC Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"BST.d" -MT"BST.d" -o "BST.o" "../BST.c"
+../BST.c: In function ‘main’:
+../BST.c:118:6: warning: unused variable ‘i’
+Finished building: ../BST.c
+ 
+Building target: DataStructures
+Invoking: Cross GCC Linker
+gcc  -o "DataStructures"  ./BST.o   
+Finished building target: DataStructures
+ 
+
+**** Build Finished ****

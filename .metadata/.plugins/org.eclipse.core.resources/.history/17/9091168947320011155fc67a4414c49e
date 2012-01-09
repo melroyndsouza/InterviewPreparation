@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+
+int highBit(int num){
+	int place =0;
+	while(num!=0){
+		place++;
+		num = num>>1;
+	}
+
+}
+
+
+
+int main(){
+	int i=4;
+	int j=0;
+	int k=-4;
+	printf("abcd");
+	return 0;
+}

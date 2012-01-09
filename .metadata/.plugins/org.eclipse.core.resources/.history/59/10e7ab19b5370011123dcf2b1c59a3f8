@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void swap(int *a, int* b) {
+	if (a != b) {
+		*a = *a ^ *b;
+		*b = *a ^ *b;
+		*a = *a ^ *b;
+	}
+}
+
+void heapify(int a[], int r, int b) {
+	int c = 2 * r + 1;
+
+	if (c < b)
+		c = a[c] > a[c + 1] ? c : c + 1;
+	if (c > b)
+		return;
+	if (a[c] <= a[r])
+		return;
+
+	swap(&a[c], &a[r]);
+	heapify(a, c, b);
+}
+
+void heapSort(int a[],int s){
+	int i;
+
+	for(i=s/2;i>=0;i--)
+		heapify(a,i,s-1);
+
+	for(i=s-1;i>0;i--){
+		swap(&a[0],&a[i]);
+		heapify(a,0,i-1);
+	}
+}
+
+
+int extract(int a[], int *op, int *s){
+	if(*s<0)
+		return -1;
+	*op = a[0];
+	swap(&a[0],&a[*s]);
+	heapify(a,0,*s);
+	return 0;
+}
+
+int insert(int a[],int *b,int s,int ip){
+	int i;
+
+	if(*b>=s)
+		return -1;
+
+	*b = *b +1;
+	a[*b] = ip;
+
+	i= *b;
+	int parent = i%2 ? i/2 : i/2 - 1;
+	while(i>=0 && a[parent] < a[i]){
+		swap(&a[i],&a[parent]);
+		i = parent;
+	}
+	return 0;
+}
+
+int main() {
+	int i = 0;
+	int b=-1;
+	int arr[6] = { 0, 0, 0, 0, 0, 0 };
+
+	//heapSort(arr,6);
+	//swap(&arr[1], &arr[1]);
+	insert(arr,&b,6,2);
+	//insert(arr,&b,6,-1);
+	//insert(arr,&b,6,72);
+	//insert(arr,&b,6,2);
+	while (i < 6)
+		printf("%d ", arr[i++]);
+	return 0;
+}
